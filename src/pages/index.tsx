@@ -1,19 +1,10 @@
 import Head from "next/head";
 import Link from "next/link";
-import { FormEvent } from "react";
 
 import { api } from "~/utils/api";
 
 export default function Home() {
   const hello = api.post.hello.useQuery({ text: "from tRPC" });
-  const create = api.post.create.useMutation()
-  const posts = api.post.getLatest.useQuery()
-
-  function onSubmit(event:FormEvent<HTMLFormElement>){
-    event.preventDefault()
-    const formData: string = new FormData(event.currentTarget).get('name') as string
-    create.mutate({ name: formData})
-  }
 
   return (
     <>
@@ -53,17 +44,6 @@ export default function Home() {
           </div>
           <p className="text-2xl text-white">
             {hello.data ? hello.data.greeting : "Loading tRPC query..."}
-          </p>
-        </div>
-        <div className="">
-          <form onSubmit={onSubmit}>
-            <div className="flex items-center border-b border-teal-500 py-2">
-              <input type="text" name="name" className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none" />
-              <button type="submit" className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded">Submit</button>
-            </div>
-          </form>
-          <p className="text-2xl text-white text-center my-10">
-            {posts.data ? posts.data.name : "Loading Posts query..."}
           </p>
         </div>
       </main>
