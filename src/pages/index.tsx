@@ -10,7 +10,7 @@ export default function Home() {
   const posts = api.post.getLatest.useQuery()
 
   function onSubmit(event:FormEvent<HTMLFormElement>){
-    event.preventDefault
+    event.preventDefault()
     const formData: string = new FormData(event.currentTarget).get('name') as string
     create.mutate({ name: formData})
   }
