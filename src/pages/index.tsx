@@ -43,7 +43,7 @@ export default function Home() {
             </Link>
           </div>
           <p className="text-2xl text-white">
-            {hello.data ? hello.data.greeting : "Loading tRPC query..."}
+            {hello.data ? hello.data.greeting : "Loading tRPC query from webhook..."}
           </p>
         </div>
       </main>
